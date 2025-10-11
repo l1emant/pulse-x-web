@@ -1,5 +1,6 @@
 "use client";
 
+import Link from 'next/link';
 import { useRouter } from "next/navigation"
 import { toast } from "sonner"
 
@@ -22,7 +23,7 @@ import {
   FieldGroup,
   // FieldLabel,
   FieldSeparator,
-} from "@/components/ui/field"
+} from "@/components/ui/field"  
 import { Input } from "@/components/ui/input"
 import { signIn } from "@/server/users"
 
@@ -38,7 +39,7 @@ import {
 } from "@/components/ui/form"
 
 import { useState } from "react";
-import { Loader2 } from "lucide-react";
+import { Loader2 } from "lucide-react";   
 import { authClient } from "@/lib/auth-client";
 
 
@@ -142,12 +143,12 @@ export function LoginForm({
                           />
                         </FormControl>
                         <div className="text-right mt-2">
-                          <a
-                            href="#"
+                          <Link
+                            href="/forgot-password"
                             className="text-sm underline-offset-4 hover:underline"
                           >
                             Forgot your password?
-                          </a>
+                          </Link>
                         </div>
                         <FormMessage />
                       </FormItem>
@@ -159,7 +160,7 @@ export function LoginForm({
                     {isLoading ? <Loader2 className="animate-spin size-4" /> : "Login"}
                   </Button>
                   <FieldDescription className="text-center">
-                    Don&apos;t have an account? <a href="#">Sign up</a>
+                    Don&apos;t have an account? <Link href="/signup">Sign up</Link>
                   </FieldDescription>
                 </Field>
               </FieldGroup>
@@ -168,8 +169,8 @@ export function LoginForm({
         </CardContent>
       </Card>
       <FieldDescription className="px-6 text-center">
-        By clicking continue, you agree to our <a href="#">Terms of Service</a>{" "}
-        and <a href="#">Privacy Policy</a>.
+        By clicking continue, you agree to our <Link href="/terms">Terms of Service</Link>{" "}
+        and <Link href="/privacy">Privacy Policy</Link>.
       </FieldDescription>
     </div>
   );

@@ -27,24 +27,27 @@ export const signIn = async (email: string, password: string) => {
 
 
 export const signUp = async (username: string, email: string, password: string) => {
-   try {
+try {
     await auth.api.signUpEmail({
         body: {
+            name: username,
             email,
             password,
-            name: username,
         }
         
     })
+
     return{
         success: true,
-        message: "Account created successfully",
+        message: "Signed up successfully",
     }
-   }catch (error) {
-     const e = error as { message: string };
-     return{
-        success: false,
-        message: e.message || "Something went wrong",
-     }
-   }  
+
+}  catch (error) {
+        const e = error as { message: string };
+        return{
+            success: false,
+            message: e.message || "Something went wrong",
+        }
+    }
+
 };
