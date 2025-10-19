@@ -1,7 +1,7 @@
-export default function Home() {
-  return (
-    <>
-        <h1>Dashboard Layout</h1>
-    </>
-  );
+export default function DashboardLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return children;
 }
