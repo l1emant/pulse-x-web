@@ -1,66 +1,75 @@
 import { Card, CardContent, CardHeader } from '@/components/ui/card'
-import { Settings2, Sparkles, Zap } from 'lucide-react'
+import { TrendingUp, Shield, Palette } from 'lucide-react'
 import { ReactNode } from 'react'
 
 export default function Features() {
     return (
-        <section className="bg-zinc-50 py-16 md:py-32 dark:bg-transparent">
+        <section id="features" className="py-16 md:py-32">
             <div className="@container mx-auto max-w-5xl px-6">
                 <div className="text-center">
                     <h2 className="text-balance text-4xl font-semibold lg:text-5xl">Why Choose PulseX?</h2>
-                    <p className="mt-4">Discover the powerful features that make PulseX the perfect choice for your next project.</p>
+                    {/* <p className="mt-4">Essential cryptocurrency tracking tools with real-time market data and secure user authentication.</p> */}
                 </div>
-                <div className="@min-4xl:max-w-full @min-4xl:grid-cols-3 mx-auto mt-8 grid max-w-sm gap-6 *:text-center md:mt-16">
-                    <Card className="group shadow-zinc-950/5">
-                        <CardHeader className="pb-3">
-                            <CardDecorator>
-                                <Zap
-                                    className="size-6"
-                                    aria-hidden
-                                />
-                            </CardDecorator>
+                <div className="@min-4xl:max-w-full @min-4xl:grid-cols-3 mx-auto mt-8 grid max-w-sm gap-6 *:text-center md:mt-16 items-stretch">
+                    <div className="relative">
+                        <div className="absolute inset-0 bg-blue-500/20 blur-3xl rounded-xl"></div>
+                        <Card className="relative group shadow-zinc-950/5">
+                            <CardHeader className="pb-3">
+                                <CardDecorator>
+                                    <TrendingUp
+                                        className="size-6"
+                                        aria-hidden
+                                    />
+                                </CardDecorator>
 
-                            <h3 className="mt-6 font-medium">Lightning Fast</h3>
-                        </CardHeader>
+                                <h3 className="mt-6 font-medium">Live Market Data</h3>
+                            </CardHeader>
 
-                        <CardContent>
-                            <p className="text-sm">Built with performance in mind, PulseX delivers blazing-fast load times and smooth user experiences.</p>
-                        </CardContent>
-                    </Card>
+                            <CardContent>
+                                <p className="mt-3 text-sm">Access real-time cryptocurrency prices and market information for major digital assets with reliable data feeds.</p>
+                            </CardContent>
+                        </Card>
+                    </div>
 
-                    <Card className="group shadow-zinc-950/5">
-                        <CardHeader className="pb-3">
-                            <CardDecorator>
-                                <Settings2
-                                    className="size-6"
-                                    aria-hidden
-                                />
-                            </CardDecorator>
+                    <div className="relative">
+                        <div className="absolute inset-0 bg-blue-500/20 blur-3xl rounded-xl"></div>
+                        <Card className="relative group shadow-zinc-950/5">
+                            <CardHeader className="pb-3">
+                                <CardDecorator>
+                                    <Shield
+                                        className="size-6"
+                                        aria-hidden
+                                    />
+                                </CardDecorator>
 
-                            <h3 className="mt-6 font-medium">Secure & Reliable</h3>
-                        </CardHeader>
+                                <h3 className="mt-6 font-medium">Secure Authentication</h3>
+                            </CardHeader>
 
-                        <CardContent>
-                            <p className="mt-3 text-sm">Enterprise-grade security with robust authentication and data protection to keep your information safe.</p>
-                        </CardContent>
-                    </Card>
+                            <CardContent>
+                                <p className="mt-3 text-sm">Protected user accounts with modern authentication system ensuring your data and preferences stay secure.</p>
+                            </CardContent>
+                        </Card>
+                    </div>
 
-                    <Card className="group shadow-zinc-950/5">
-                        <CardHeader className="pb-3">
-                            <CardDecorator>
-                                <Sparkles
-                                    className="size-6"
-                                    aria-hidden
-                                />
-                            </CardDecorator>
+                    <div className="relative">
+                        <div className="absolute inset-0 bg-blue-500/20 blur-3xl rounded-xl"></div>
+                        <Card className="relative group shadow-zinc-950/5">
+                            <CardHeader className="pb-3">
+                                <CardDecorator>
+                                    <Palette
+                                        className="size-6"
+                                        aria-hidden
+                                    />
+                                </CardDecorator>
 
-                            <h3 className="mt-6 font-medium">Modern Design</h3>
-                        </CardHeader>
+                                <h3 className="mt-6 font-medium">Clean Interface</h3>
+                            </CardHeader>
 
-                        <CardContent>
-                            <p className="mt-3 text-sm">Beautiful, responsive design that works seamlessly across all devices and screen sizes.</p>
-                        </CardContent>
-                    </Card>
+                            <CardContent>
+                                <p className="mt-3 text-sm">Modern, responsive design with intuitive navigation and dark/light theme support for optimal viewing experience.</p>
+                            </CardContent>
+                        </Card>
+                    </div>
                 </div>
             </div>
         </section>

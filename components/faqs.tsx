@@ -7,28 +7,23 @@ export default function FAQsFour() {
     const faqItems = [
         {
             id: 'item-1',
-            question: 'lorem ipsum dolor sit amet?',
-            answer: 'Standard shipping takes 3-5 business days, depending on your location. Express shipping options are available at checkout for 1-2 business day delivery.',
+            question: 'How accurate is the real-time price data?',
+            answer: 'Our price data is sourced from multiple top-tier exchanges and updated every few seconds. We aggregate data from many exchanges to provide the most accurate market prices.',
         },
         {
             id: 'item-2',
-            question: 'Pulvinar vivamus fringilla lacus nec metus',
-            answer: 'lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+            question: 'Can I track multiple cryptocurrencies?',
+            answer: 'Yes! PulseX allows you to track multiple cryptocurrencies, perfect for separating different investment strategies.',
         },
         {
             id: 'item-3',
-            question: 'Quisque faucibus ex sapien vitae?',
-            answer: 'lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+            question: 'How many cryptocurrencies can I track?',
+            answer: "PulseX supports over 100 cryptocurrencies including Bitcoin, Ethereum, and all major altcoins. We're constantly adding new tokens as they gain market traction.",
         },
         {
             id: 'item-4',
-            question: 'Tempus leo eu aenean sed diam urna tempor?',
-            answer: "lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-        },
-        {
-            id: 'item-5',
-            question: 'Ut hendrerit semper vel class aptent?',
-            answer: 'lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+            question: 'Do you offer mobile apps?',
+            answer: 'Yes, we also have an Android app with all the features of the web platform, allowing you to keep track of cryptocurrencies on the go.',
         },
     ]
 
@@ -40,11 +35,12 @@ export default function FAQsFour() {
                     <p className="text-muted-foreground mt-4 text-balance">Discover quick and comprehensive answers to common questions about our platform, services, and features.</p>
                 </div>
 
-                <div className="mx-auto mt-12 max-w-xl">
+                <div className="mx-auto mt-12 max-w-xl relative">
+                    <div className="absolute inset-0 bg-blue-500/10 blur-3xl rounded-2xl"></div>
                     <Accordion
                         type="single"
                         collapsible
-                        className="bg-muted dark:bg-muted/50 w-full rounded-2xl p-1">
+                        className="relative bg-muted dark:bg-muted/50 w-full rounded-2xl p-1">
                         {faqItems.map((item) => (
                             <div
                                 className="group"
@@ -63,9 +59,9 @@ export default function FAQsFour() {
                     </Accordion>
 
                     <p className="text-muted-foreground mt-6 px-8">
-                        Can't find what you're looking for? Contact our{' '}
+                        Can't find what you're looking for? Contact{' '}
                         <Link
-                            href="#"
+                            href="mailto:support@pulsex.com"
                             className="text-primary font-medium hover:underline">
                             our team
                         </Link>

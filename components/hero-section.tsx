@@ -13,18 +13,18 @@ export default function HeroSection() {
             <main className="overflow-x-hidden">
                 <section>
                     <div className="pb-24 pt-12 md:pb-32 lg:pb-56 lg:pt-44">
-                        <div className="relative mx-auto flex max-w-6xl flex-col px-6 lg:block">
-                            <div className="mx-auto max-w-lg text-center lg:ml-0 lg:w-1/2 lg:text-left">
-                                <h1 className="mt-8 max-w-2xl text-balance text-5xl font-medium md:text-6xl lg:mt-16 xl:text-7xl">Lorem ipsum dolor sit</h1>
-                                <p className="mt-8 max-w-2xl text-pretty text-lg">Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora expedita possimus sunt voluptates aut eum neque facere quidem vel nisi!</p>
+                        <div className="relative mx-auto flex max-w-6xl flex-col px-6 lg:grid lg:grid-cols-2 lg:gap-12">
+                            <div className="mx-auto max-w-lg text-center lg:mx-0 lg:text-left">
+                                <h1 className="mt-8 max-w-2xl text-balance text-5xl font-medium md:text-6xl lg:mt-16 xl:text-7xl">Track Crypto Prices in Real Time</h1>
+                                <p className="mt-8 max-w-2xl text-pretty text-lg">Monitor live prices and stay updated with key market trends all in one clean dashboard</p>
 
                                 <div className="mt-12 flex flex-col items-center justify-center gap-2 sm:flex-row lg:justify-start">
                                     <Button
                                         asChild
                                         size="lg"
                                         className="px-5 text-base">
-                                        <Link href="#link">
-                                            <span className="text-nowrap">Join Now</span>
+                                        <Link href="/signup">
+                                            <span className="text-nowrap">Start Tracking</span>
                                         </Link>
                                     </Button>
                                     <Button
@@ -33,106 +33,164 @@ export default function HeroSection() {
                                         size="lg"
                                         variant="ghost"
                                         className="px-5 text-base">
-                                        <Link href="#link">
-                                            <span className="text-nowrap">Know More</span>
+                                        <Link href="#features">
+                                            <span className="text-nowrap">Learn More</span>
                                         </Link>
                                     </Button>
                                 </div>
                             </div>
-                            <Image
-                                className="-z-10 order-first ml-auto h-56 w-full object-cover invert sm:h-96 lg:absolute lg:inset-0 lg:-right-20 lg:-top-96 lg:order-last lg:h-max lg:w-2/3 lg:object-contain dark:mix-blend-lighten dark:invert-0"
-                                src="https://ik.imagekit.io/lrigu76hy/tailark/abstract-bg.jpg?updatedAt=1745733473768"
-                                alt="Abstract Object"
-                                height="4000"
-                                width="3000"
-                            />
+                            <div className="order-first lg:order-last flex justify-center lg:items-start lg:pt-8 lg:h-[420px] lg:-mb-4 relative overflow-hidden">
+                                <Image
+                                    className="h-[450px] w-auto object-contain object-top sm:h-[530px] lg:h-[580px] lg:overflow-visible"
+                                    src="/phone_mockup.png"
+                                    alt="PulseX Mobile App Mockup"
+                                    height="650"
+                                    width="450"
+                                />
+                            </div>
                         </div>
                     </div>
                 </section>
-                <section className="bg-background pb-16 md:pb-32">
+                <section className="pb-16 md:pb-32">
                     <div className="group relative m-auto max-w-6xl px-6">
+                        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-24 bg-blue-500/8 dark:bg-blue-400/12 blur-3xl rounded-full -z-10 overflow-visible"></div>
                         <div className="flex flex-col items-center md:flex-row">
                             <div className="md:max-w-44 md:border-r md:pr-6">
-                                <p className="text-end text-sm">Powering the best teams</p>
+                                <p className="text-end text-sm">Track the market leaders</p>
                             </div>
                             <div className="relative py-6 md:w-[calc(100%-11rem)]">
                                 <InfiniteSlider
                                     speedOnHover={20}
                                     speed={40}
                                     gap={112}>
-                                    <div className="flex">
-                                        <img
-                                            className="mx-auto h-5 w-fit dark:invert"
-                                            src="https://html.tailus.io/blocks/customers/nvidia.svg"
-                                            alt="Nvidia Logo"
-                                            height="20"
-                                            width="auto"
-                                        />
+                                    <div className="flex flex-col items-center gap-1">
+                                        <div className="h-12 w-12 rounded-xl bg-card border border-border flex items-center justify-center shadow-sm">
+                                            <img
+                                                className="h-7 w-7 object-contain"
+                                                src="https://s2.coinmarketcap.com/static/img/coins/64x64/1.png"
+                                                alt="Bitcoin"
+                                                height="28"
+                                                width="28"
+                                            />
+                                        </div>
+                                        <span className="text-xs font-medium text-muted-foreground">BTC</span>
                                     </div>
 
-                                    <div className="flex">
-                                        <img
-                                            className="mx-auto h-4 w-fit dark:invert"
-                                            src="https://html.tailus.io/blocks/customers/column.svg"
-                                            alt="Column Logo"
-                                            height="16"
-                                            width="auto"
-                                        />
-                                    </div>
-                                    <div className="flex">
-                                        <img
-                                            className="mx-auto h-4 w-fit dark:invert"
-                                            src="https://html.tailus.io/blocks/customers/github.svg"
-                                            alt="GitHub Logo"
-                                            height="16"
-                                            width="auto"
-                                        />
-                                    </div>
-                                    <div className="flex">
-                                        <img
-                                            className="mx-auto h-5 w-fit dark:invert"
-                                            src="https://html.tailus.io/blocks/customers/nike.svg"
-                                            alt="Nike Logo"
-                                            height="20"
-                                            width="auto"
-                                        />
-                                    </div>
-                                    <div className="flex">
-                                        <img
-                                            className="mx-auto h-5 w-fit dark:invert"
-                                            src="https://html.tailus.io/blocks/customers/lemonsqueezy.svg"
-                                            alt="Lemon Squeezy Logo"
-                                            height="20"
-                                            width="auto"
-                                        />
-                                    </div>
-                                    <div className="flex">
-                                        <img
-                                            className="mx-auto h-4 w-fit dark:invert"
-                                            src="https://html.tailus.io/blocks/customers/laravel.svg"
-                                            alt="Laravel Logo"
-                                            height="16"
-                                            width="auto"
-                                        />
-                                    </div>
-                                    <div className="flex">
-                                        <img
-                                            className="mx-auto h-7 w-fit dark:invert"
-                                            src="https://html.tailus.io/blocks/customers/lilly.svg"
-                                            alt="Lilly Logo"
-                                            height="28"
-                                            width="auto"
-                                        />
+                                    <div className="flex flex-col items-center gap-1">
+                                        <div className="h-12 w-12 rounded-xl bg-card border border-border flex items-center justify-center shadow-sm">
+                                            <img
+                                                className="h-7 w-7 object-contain"
+                                                src="https://s2.coinmarketcap.com/static/img/coins/64x64/1027.png"
+                                                alt="Ethereum"
+                                                height="28"
+                                                width="28"
+                                            />
+                                        </div>
+                                        <span className="text-xs font-medium text-muted-foreground">ETH</span>
                                     </div>
 
-                                    <div className="flex">
-                                        <img
-                                            className="mx-auto h-6 w-fit dark:invert"
-                                            src="https://html.tailus.io/blocks/customers/openai.svg"
-                                            alt="OpenAI Logo"
-                                            height="24"
-                                            width="auto"
-                                        />
+                                    <div className="flex flex-col items-center gap-1">
+                                        <div className="h-12 w-12 rounded-xl bg-card border border-border flex items-center justify-center shadow-sm">
+                                            <img
+                                                className="h-7 w-7 object-contain"
+                                                src="https://s2.coinmarketcap.com/static/img/coins/64x64/825.png"
+                                                alt="Tether"
+                                                height="28"
+                                                width="28"
+                                            />
+                                        </div>
+                                        <span className="text-xs font-medium text-muted-foreground">USDT</span>
+                                    </div>
+
+                                    <div className="flex flex-col items-center gap-1">
+                                        <div className="h-12 w-12 rounded-xl bg-card border border-border flex items-center justify-center shadow-sm">
+                                            <img
+                                                className="h-7 w-7 object-contain"
+                                                src="https://s2.coinmarketcap.com/static/img/coins/64x64/1839.png"
+                                                alt="BNB"
+                                                height="28"
+                                                width="28"
+                                            />
+                                        </div>
+                                        <span className="text-xs font-medium text-muted-foreground">BNB</span>
+                                    </div>
+
+                                    <div className="flex flex-col items-center gap-1">
+                                        <div className="h-12 w-12 rounded-xl bg-card border border-border flex items-center justify-center shadow-sm">
+                                            <img
+                                                className="h-7 w-7 object-contain"
+                                                src="https://s2.coinmarketcap.com/static/img/coins/64x64/5426.png"
+                                                alt="Solana"
+                                                height="28"
+                                                width="28"
+                                            />
+                                        </div>
+                                        <span className="text-xs font-medium text-muted-foreground">SOL</span>
+                                    </div>
+
+                                    <div className="flex flex-col items-center gap-1">
+                                        <div className="h-12 w-12 rounded-xl bg-card border border-border flex items-center justify-center shadow-sm">
+                                            <img
+                                                className="h-7 w-7 object-contain"
+                                                src="https://s2.coinmarketcap.com/static/img/coins/64x64/3408.png"
+                                                alt="USDC"
+                                                height="28"
+                                                width="28"
+                                            />
+                                        </div>
+                                        <span className="text-xs font-medium text-muted-foreground">USDC</span>
+                                    </div>
+
+                                    <div className="flex flex-col items-center gap-1">
+                                        <div className="h-12 w-12 rounded-xl bg-card border border-border flex items-center justify-center shadow-sm">
+                                            <img
+                                                className="h-7 w-7 object-contain"
+                                                src="https://s2.coinmarketcap.com/static/img/coins/64x64/52.png"
+                                                alt="XRP"
+                                                height="28"
+                                                width="28"
+                                            />
+                                        </div>
+                                        <span className="text-xs font-medium text-muted-foreground">XRP</span>
+                                    </div>
+
+                                    <div className="flex flex-col items-center gap-1">
+                                        <div className="h-12 w-12 rounded-xl bg-card border border-border flex items-center justify-center shadow-sm">
+                                            <img
+                                                className="h-7 w-7 object-contain"
+                                                src="https://s2.coinmarketcap.com/static/img/coins/64x64/74.png"
+                                                alt="Dogecoin"
+                                                height="28"
+                                                width="28"
+                                            />
+                                        </div>
+                                        <span className="text-xs font-medium text-muted-foreground">DOGE</span>
+                                    </div>
+
+                                    <div className="flex flex-col items-center gap-1">
+                                        <div className="h-12 w-12 rounded-xl bg-card border border-border flex items-center justify-center shadow-sm">
+                                            <img
+                                                className="h-7 w-7 object-contain"
+                                                src="https://s2.coinmarketcap.com/static/img/coins/64x64/2010.png"
+                                                alt="Cardano"
+                                                height="28"
+                                                width="28"
+                                            />
+                                        </div>
+                                        <span className="text-xs font-medium text-muted-foreground">ADA</span>
+                                    </div>
+
+                                    <div className="flex flex-col items-center gap-1">
+                                        <div className="h-12 w-12 rounded-xl bg-card border border-border flex items-center justify-center shadow-sm">
+                                            <img
+                                                className="h-7 w-7 object-contain"
+                                                src="https://s2.coinmarketcap.com/static/img/coins/64x64/5805.png"
+                                                alt="Avalanche"
+                                                height="28"
+                                                width="28"
+                                            />
+                                        </div>
+                                        <span className="text-xs font-medium text-muted-foreground">AVAX</span>
                                     </div>
                                 </InfiniteSlider>
 
