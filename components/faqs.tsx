@@ -18,7 +18,7 @@ export default function FAQsFour() {
         {
             id: 'item-3',
             question: 'How many cryptocurrencies can I track?',
-            answer: "PulseX supports over 100 cryptocurrencies including Bitcoin, Ethereum, and all major altcoins. We're constantly adding new tokens as they gain market traction.",
+            answer: "PulseX supports over 100 cryptocurrencies including Bitcoin, Ethereum, and all major altcoins. We&apos;re constantly adding new tokens as they gain market traction.",
         },
         {
             id: 'item-4',

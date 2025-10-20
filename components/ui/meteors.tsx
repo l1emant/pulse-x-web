@@ -1,6 +1,5 @@
 "use client";
 import { cn } from "@/lib/utils";
-import { motion } from "framer-motion";
 import React, { useState, useEffect } from "react";
 
 export const Meteors = ({

@@ -1,10 +1,8 @@
 "use client";
 
 import { useState, useEffect, useCallback } from 'react';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Search } from "lucide-react";
@@ -304,7 +302,7 @@ export default function CryptoDashboard() {
             {/* No Results */}
             {searchTerm && filteredData.length === 0 && (
               <div className="px-6 py-8 text-center">
-                <p className="text-muted-foreground">No coins found matching "{searchTerm}"</p>
+                <p className="text-muted-foreground">No coins found matching &quot;{searchTerm}&quot;</p>
               </div>
             )}
             
