@@ -2,16 +2,18 @@ import CoinDetail from "@/components/coin-detail";
 import { DashboardHeader } from "@/components/dashboard-header";
 
 interface CoinPageProps {
-  params: {
+  params: Promise<{
     id: string;
-  };
+  }>;
 }
 
-export default function CoinPage({ params }: CoinPageProps) {
+export default async function CoinPage({ params }: CoinPageProps) {
+  const { id } = await params;
+  
   return (
     <main className="min-h-screen bg-background">
       <DashboardHeader />
-      <CoinDetail coinId={params.id} />
+      <CoinDetail coinId={id} />
     </main>
   );
 }
