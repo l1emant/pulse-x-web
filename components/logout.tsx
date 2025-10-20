@@ -10,14 +10,15 @@ export function Logout() {
     const router = useRouter();
     const handleLogout = async () => {
         try {
-            const { error } = await authClient.signOut();
-            if (!error) {
-                toast.success("Logged out successfully");
-            }
-            // Force reload to clear all state
+            await authClient.signOut();
+            // Clear the session cookie manually
+            document.cookie = 'better-auth.session_token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+            toast.success("Logged out successfully");
             window.location.href = "/";
         } catch (error) {
             console.error("Logout failed:", error);
+            // Clear cookie even on error
+            document.cookie = 'better-auth.session_token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
             toast.error("Logout failed. Please try again.");
             window.location.href = "/";
         }
