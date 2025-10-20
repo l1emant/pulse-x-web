@@ -2,11 +2,12 @@ import { NextResponse } from 'next/server';
 
 export async function GET(
   request: Request,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params;
     const response = await fetch(
-      `https://pro-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest?id=${params.id}`,
+      `https://pro-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest?id=${id}`,
       {
         headers: {
           'X-CMC_PRO_API_KEY': process.env.COINMARKETCAP_API_KEY!,
