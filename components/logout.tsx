@@ -10,22 +10,9 @@ export function Logout() {
     const router = useRouter();
     const handleLogout = async () => {
         try {
-            const { data, error } = await authClient.signOut({
-                fetchOptions: {
-                    onSuccess: () => {
-                        toast.success("Logged out successfully");
-                        router.push("/");
-                    },
-                    onError: (ctx) => {
-                        toast.error("Logout failed. Please try again.");
-                    }
-                }
-            });
-            
-            if (!error) {
-                toast.success("Logged out successfully");
-                router.push("/");
-            }
+            await authClient.signOut();
+            toast.success("Logged out successfully");
+            window.location.href = "/";
         } catch (error) {
             console.error("Logout failed:", error);
             toast.error("Logout failed. Please try again.");
