@@ -2,46 +2,32 @@
 import { authClient } from "@/lib/auth-client";
 import { Button } from "@/components/ui/button";
 import { LogOut } from "lucide-react";
-import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 
-
 export function Logout() {
-    const router = useRouter();
     const handleLogout = async () => {
         try {
-            console.log('Cookies before logout:', document.cookie);
+            console.log('Starting logout process...');
+            
+            // Use better-auth's signOut method which properly clears the session
             await authClient.signOut();
             
-            // Clear all possible session cookies
-            const cookiesToClear = [
-                'better-auth.session_token',
-                'better-auth.session',
-                'session_token',
-                'session',
-                'auth_session',
-                'authjs.session-token'
-            ];
-            
-            cookiesToClear.forEach(name => {
-                document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
-            });
-            
-            console.log('Cookies after logout:', document.cookie);
+            console.log('Logout successful, redirecting...');
             toast.success("Logged out successfully");
+            
+            // Force a hard redirect to ensure all client state is cleared
             window.location.href = "/";
         } catch (error) {
             console.error("Logout failed:", error);
             toast.error("Logout failed. Please try again.");
+            // Even if logout fails, redirect to home page
             window.location.href = "/";
         }
     };
 
-  return (
-    <Button variant="outline" onClick={handleLogout}>
-      Logout <LogOut className="size-4" />
-    </Button>
-  );
-
-
+    return (
+        <Button variant="outline" onClick={handleLogout}>
+            Logout <LogOut className="size-4" />
+        </Button>
+    );
 }

@@ -1,28 +1,28 @@
 import { NextRequest, NextResponse } from "next/server";
+import { authMiddleware } from "@/lib/auth-middleware";
 
 export async function middleware(request: NextRequest) {
-	// Debug: Log all cookies to see what's actually there
-	console.log('All cookies:', request.cookies.getAll().map(c => `${c.name}=${c.value}`));
-	
-	// Check for any possible session cookie names
-	const possibleCookies = [
-		'better-auth.session_token',
-		'better-auth.session',
-		'session_token',
-		'session',
-		'auth_session',
-		'authjs.session-token'
-	];
-	
-	const sessionCookie = possibleCookies.find(name => request.cookies.get(name));
-	console.log('Found session cookie:', sessionCookie);
+	try {
+		// Use simplified auth config for middleware (Edge Runtime compatible)
+		const session = await authMiddleware.api.getSession({
+			headers: request.headers
+		});
 
-	if (!sessionCookie) {
-		console.log('No session cookie found, redirecting to login');
+		// If no valid session, redirect to login
+		if (!session) {
+			console.log('No valid session found, redirecting to login');
+			return NextResponse.redirect(new URL("/login", request.url));
+		}
+
+		// Session is valid, allow access
+		console.log('Valid session found for user:', session.user?.email);
+		return NextResponse.next();
+	} catch (error) {
+		console.error('Session validation error:', error);
+		// For now, if there's a database error, redirect to login for security
+		// In production, you'd want to handle this more gracefully
 		return NextResponse.redirect(new URL("/login", request.url));
 	}
-
-	return NextResponse.next();
 }
 
 export const config = {
