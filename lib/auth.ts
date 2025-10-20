@@ -5,20 +5,21 @@ import { nextCookies } from "better-auth/next-js";
 import { schema } from "@/db/schema"; // your drizzle schema
 
 export const auth = betterAuth({
-    baseURL: process.env.BETTER_AUTH_URL || "http://localhost:3000",
-    secret: process.env.BETTER_AUTH_SECRET || "fallback-secret-for-development",
-    socialProviders: {
-        google: { 
-            clientId: process.env.GOOGLE_CLIENT_ID as string, 
-            clientSecret: process.env.GOOGLE_CLIENT_SECRET as string, 
-        }, 
-    },
-    emailAndPassword: { 
-        enabled: true, 
+  baseURL: process.env.BETTER_AUTH_URL || "http://localhost:3000",
+  secret: process.env.BETTER_AUTH_SECRET,
+  trustedOrigins: ["http://localhost:3000"],
+  socialProviders: {
+    google: { 
+      clientId: process.env.GOOGLE_CLIENT_ID as string, 
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET as string, 
     }, 
-    database: drizzleAdapter(db, {
-        provider: "pg",
-        schema,
-    }),
-    plugins: [nextCookies()],
+  },
+  emailAndPassword: { 
+    enabled: true, 
+  }, 
+  database: drizzleAdapter(db, {
+    provider: "pg",
+    schema,
+  }),
+  plugins: [nextCookies()]
 });

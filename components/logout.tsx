@@ -10,7 +10,8 @@ export function Logout() {
             console.log('Starting logout process...');
             
             // Use better-auth's signOut method which properly clears the session
-            await authClient.signOut();
+            const result = await authClient.signOut();
+            console.log('Logout result:', result);
             
             console.log('Logout successful, redirecting...');
             toast.success("Logged out successfully");

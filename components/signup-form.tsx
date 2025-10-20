@@ -23,7 +23,6 @@ import {
   FieldSeparator,
 } from "@/components/ui/field"
 import { Input } from "@/components/ui/input"
-import { signUp } from "@/server/users"
 
 import { z } from "zod"
 
@@ -63,11 +62,16 @@ export function SignupForm({
   });
 
   const signInWithGoogle = async () => {
-   await authClient.signIn.social({
-    provider: "google",
-    callbackURL: "/dashboard",
-  });
-};
+    try {
+      await authClient.signIn.social({
+        provider: "google",
+        callbackURL: "/dashboard",
+      });
+    } catch (error) {
+      console.error('Google sign-in error:', error);
+      toast.error("Google sign-in failed");
+    }
+  };
 
   // 2. Define a submit handler.
   async function onSubmit(values: z.infer<typeof formSchema>) {

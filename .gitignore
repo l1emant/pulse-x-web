@@ -47,3 +47,6 @@ next-env.d.ts
 
 .vscode/
 llm.txt
+
+# Amazon Q memory bank
+.amazonq/

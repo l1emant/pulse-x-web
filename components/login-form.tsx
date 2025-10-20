@@ -6,7 +6,7 @@ import { toast } from "sonner"
 
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
-// import { toast } from "sonner"
+
 
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
@@ -25,7 +25,6 @@ import {
   FieldSeparator,
 } from "@/components/ui/field"  
 import { Input } from "@/components/ui/input"
-import { signIn } from "@/server/users"
 
 import { z } from "zod"
 
@@ -64,37 +63,63 @@ export function LoginForm({
   });
 
   const signInWithGoogle = async () => {
-   await authClient.signIn.social({
-    provider: "google",
-    callbackURL: "/dashboard",
-  });
-};
+    try {
+      await authClient.signIn.social({
+        provider: "google",
+        callbackURL: "/dashboard",
+      });
+    } catch (error) {
+      console.error('Google sign-in error:', error);
+      toast.error("Google sign-in failed");
+    }
+  };
 
   // 2. Define a submit handler.
   async function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log('Login form submitted:', values);
+    console.log('Login form submitted:', values.email);
     setIsLoading(true);
+    
+    // Add timeout to prevent infinite loading
+    const timeoutId = setTimeout(() => {
+      console.log('Login request timed out');
+      toast.error("Request timed out - please try again");
+      setIsLoading(false);
+    }, 10000); // 10 second timeout
+    
     try {
-      const { data, error } = await authClient.signIn.email({
+      console.log('Making login request to auth client...');
+      
+      const result = await authClient.signIn.email({
         email: values.email,
         password: values.password,
-        callbackURL: "/dashboard",
       });
 
-      console.log('Login response:', { data, error });
+      clearTimeout(timeoutId);
+      console.log('Login response received:', result);
 
-      if (error) {
-        toast.error(error.message || "Sign in failed");
-      } else {
+      if (result.error) {
+        console.error('Login error:', result.error);
+        toast.error(result.error.message || "Sign in failed");
+        return;
+      }
+      
+      if (result.data) {
+        console.log('Login successful:', result.data);
         toast.success("Signed in successfully!");
         window.location.href = '/dashboard';
+        return;
       }
+      
+      console.log('Unexpected response:', result);
+      toast.error("Sign in failed - please try again");
+      
     } catch (error) {
-      console.error('Login error:', error);
-      toast.error("Something went wrong");
+      clearTimeout(timeoutId);
+      console.error('Login exception:', error);
+      toast.error("Connection error - please check your network");
+    } finally {
+      setIsLoading(false);
     }
-    
-    setIsLoading(false);
   }
 
 
