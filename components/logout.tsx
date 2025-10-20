@@ -10,26 +10,15 @@ export function Logout() {
     const router = useRouter();
     const handleLogout = async () => {
         try {
-            await authClient.signOut({
-                fetchOptions: {
-                    onSuccess: () => {
-                        // Clear all cookies
-                        document.cookie.split(";").forEach(function(c) { 
-                            document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/"); 
-                        });
-                        toast.success("Logged out successfully");
-                        window.location.replace("/");
-                    }
-                }
-            });
+            await authClient.signOut();
+            toast.success("Logged out successfully");
+            // Force a hard reload to clear all state
+            setTimeout(() => {
+                window.location.href = "/";
+            }, 100);
         } catch (error) {
             console.error("Logout failed:", error);
-            // Force clear cookies even on error
-            document.cookie.split(";").forEach(function(c) { 
-                document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/"); 
-            });
             toast.error("Logout failed. Please try again.");
-            window.location.replace("/");
         }
     };
 

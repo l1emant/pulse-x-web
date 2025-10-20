@@ -72,6 +72,7 @@ export function LoginForm({
 
   // 2. Define a submit handler.
   async function onSubmit(values: z.infer<typeof formSchema>) {
+    console.log('Login form submitted:', values);
     setIsLoading(true);
     try {
       const { data, error } = await authClient.signIn.email({
@@ -80,13 +81,16 @@ export function LoginForm({
         callbackURL: "/dashboard",
       });
 
+      console.log('Login response:', { data, error });
+
       if (error) {
         toast.error(error.message || "Sign in failed");
       } else {
         toast.success("Signed in successfully!");
-        router.push('/dashboard');
+        window.location.href = '/dashboard';
       }
     } catch (error) {
+      console.error('Login error:', error);
       toast.error("Something went wrong");
     }
     
