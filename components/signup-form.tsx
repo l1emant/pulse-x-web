@@ -72,13 +72,22 @@ export function SignupForm({
   // 2. Define a submit handler.
   async function onSubmit(values: z.infer<typeof formSchema>) {
     setIsLoading(true);
-    const {success, message} = await signUp(values.username, values.email, values.password);
+    try {
+      const { data, error } = await authClient.signUp.email({
+        email: values.email,
+        password: values.password,
+        name: values.username,
+        callbackURL: "/dashboard",
+      });
 
-    if (success){
-      toast.success(message as string);
-      router.push('/dashboard')
-    }else{
-      toast.error(message as string);
+      if (error) {
+        toast.error(error.message || "Sign up failed");
+      } else {
+        toast.success("Account created successfully!");
+        router.push('/dashboard');
+      }
+    } catch (error) {
+      toast.error("Something went wrong");
     }
     
     setIsLoading(false);
