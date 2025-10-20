@@ -11,17 +11,25 @@ export function Logout() {
     const handleLogout = async () => {
         try {
             await authClient.signOut();
-            // Manually clear the session cookie
-            document.cookie = 'better-auth.session_token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+            
+            // Clear all possible better-auth cookies
+            const cookiesToClear = [
+                'better-auth.session_token',
+                'better-auth.session',
+                'session',
+                'auth-token'
+            ];
+            
+            cookiesToClear.forEach(cookieName => {
+                document.cookie = `${cookieName}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
+                document.cookie = `${cookieName}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=${window.location.hostname};`;
+            });
+            
             toast.success("Logged out successfully");
-            // Force a hard reload to clear all state
             window.location.replace("/");
         } catch (error) {
             console.error("Logout failed:", error);
-            // Force clear cookie even on error
-            document.cookie = 'better-auth.session_token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
             toast.error("Logout failed. Please try again.");
-            window.location.replace("/");
         }
     };
 
