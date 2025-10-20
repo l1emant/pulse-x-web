@@ -25,6 +25,14 @@ interface CryptoData {
   };
 }
 
+const formatUSD = (num: number) => {
+  if (num >= 1e12) return `$${(num / 1e12).toFixed(1)}T`;
+  if (num >= 1e9) return `$${(num / 1e9).toFixed(1)}B`;
+  if (num >= 1e6) return `$${(num / 1e6).toFixed(1)}M`;
+  if (num >= 1e3) return `$${(num / 1e3).toFixed(1)}K`;
+  return `$${num.toFixed(2)}`;
+};
+
 export default function CryptoDashboard() {
   const [cryptoData, setCryptoData] = useState<CryptoData[]>([]);
   const [filteredData, setFilteredData] = useState<CryptoData[]>([]);
@@ -40,13 +48,21 @@ export default function CryptoDashboard() {
       else setLoadingMore(true);
       
       const start = (pageNum - 1) * 20 + 1;
-      const response = await fetch(`/api/crypto?start=${start}&limit=20`);
+      const response = await fetch(`/api/crypto?start=${start}&limit=20&sort=market_cap&sort_dir=desc`);
+      
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      
       const result = await response.json();
       
       if (result.data && result.data.length > 0) {
-        setCryptoData(prev => append ? [...prev, ...result.data] : result.data);
-        setFilteredData(prev => append ? [...prev, ...result.data] : result.data);
-        if (result.data.length < 20 || start + result.data.length >= 100) {
+        const sortedData = result.data.sort((a: CryptoData, b: CryptoData) => 
+          b.quote.USD.market_cap - a.quote.USD.market_cap
+        );
+        setCryptoData(prev => append ? [...prev, ...sortedData] : sortedData);
+        setFilteredData(prev => append ? [...prev, ...sortedData] : sortedData);
+        if (sortedData.length < 20 || start + sortedData.length >= 100) {
           setHasMore(false);
         }
       } else {
@@ -54,6 +70,7 @@ export default function CryptoDashboard() {
       }
     } catch (error) {
       console.error('Error fetching crypto data:', error);
+      setHasMore(false);
     } finally {
       setLoading(false);
       setLoadingMore(false);
@@ -70,7 +87,7 @@ export default function CryptoDashboard() {
 
   useEffect(() => {
     fetchCryptoData(1);
-    const interval = setInterval(() => fetchCryptoData(1), 60000);
+    const interval = setInterval(() => fetchCryptoData(1), 120000);
     return () => clearInterval(interval);
   }, [fetchCryptoData]);
 
@@ -229,14 +246,14 @@ export default function CryptoDashboard() {
                 {/* Market Cap */}
                 <div className="text-right flex items-center justify-end">
                   <span className="text-sm font-medium text-foreground">
-                    ${(crypto.quote.USD.market_cap / 1000000).toFixed(0)}M
+                    {formatUSD(crypto.quote.USD.market_cap)}
                   </span>
                 </div>
                 
                 {/* Volume */}
                 <div className="text-right flex items-center justify-end">
                   <span className="text-sm font-medium text-foreground">
-                    ${(crypto.quote.USD.volume_24h / 1000000).toFixed(1)}M
+                    {formatUSD(crypto.quote.USD.volume_24h)}
                   </span>
                 </div>
                 

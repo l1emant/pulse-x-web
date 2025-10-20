@@ -3,11 +3,11 @@ import Link from 'next/link'
 const links = [
     {
         title: 'Github',
-        href: '#',
+        href: 'https://github.com/l1emant/pulse-x-web',
     },
     {
         title: 'About',
-        href: '#',
+        href: '/about',
     },
 ]
 
@@ -15,9 +15,9 @@ export default function FooterSection() {
     return (
         <footer className="border-b bg-white py-12 dark:bg-transparent">
             <div className="mx-auto max-w-5xl px-6">
-                <div className="flex flex-wrap justify-between gap-6">
-                    <span className="text-muted-foreground order-last block text-center text-sm md:order-first">© {new Date().getFullYear()} PulseX, All rights reserved</span>
-                    <div className="order-first flex flex-wrap justify-center gap-6 text-sm md:order-last">
+                <div className="flex flex-wrap justify-between items-center gap-6">
+                    <span className="text-muted-foreground text-sm">© {new Date().getFullYear()} PulseX, All rights reserved</span>
+                    <div className="flex flex-wrap gap-6 text-sm">
                         {links.map((link, index) => (
                             <Link
                                 key={index}

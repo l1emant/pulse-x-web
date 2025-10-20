@@ -264,12 +264,12 @@ export default function CoinDetail({ coinId }: CoinDetailProps) {
             
             <div className="space-y-4">
               <div>
-                <h4 className="text-sm font-medium text-muted-foreground mb-2">Today&apos;s Range</h4>
+                <h4 className="text-sm font-medium text-muted-foreground mb-2">Market Data</h4>
                 <div className="space-y-2">
                   <div className="flex justify-between items-center">
                     <span className="text-sm flex items-center gap-2">
-                      <div className="w-2 h-2 bg-yellow-500 rounded-full"></div>
-                      Open:
+                      <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                      Current Price:
                     </span>
                     <span className="text-sm font-medium">
                       ₹{(coinData.quote.USD.price * 83).toLocaleString('en-IN', { 
@@ -281,25 +281,21 @@ export default function CoinDetail({ coinId }: CoinDetailProps) {
                   <div className="flex justify-between items-center">
                     <span className="text-sm flex items-center gap-2">
                       <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                      High:
+                      24h Change:
                     </span>
-                    <span className="text-sm font-medium text-green-500">
-                      ₹{(coinData.quote.USD.price * 1.02 * 83).toLocaleString('en-IN', { 
-                        minimumFractionDigits: 2, 
-                        maximumFractionDigits: 2 
-                      })}
+                    <span className={`text-sm font-medium ${
+                      coinData.quote.USD.percent_change_24h >= 0 ? 'text-green-500' : 'text-red-500'
+                    }`}>
+                      {coinData.quote.USD.percent_change_24h >= 0 ? '+' : ''}{coinData.quote.USD.percent_change_24h.toFixed(2)}%
                     </span>
                   </div>
                   <div className="flex justify-between items-center">
                     <span className="text-sm flex items-center gap-2">
-                      <div className="w-2 h-2 bg-red-500 rounded-full"></div>
-                      Low:
+                      <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
+                      Rank:
                     </span>
-                    <span className="text-sm font-medium text-red-500">
-                      ₹{(coinData.quote.USD.price * 0.98 * 83).toLocaleString('en-IN', { 
-                        minimumFractionDigits: 2, 
-                        maximumFractionDigits: 2 
-                      })}
+                    <span className="text-sm font-medium">
+                      #{coinData.cmc_rank}
                     </span>
                   </div>
                 </div>
@@ -310,28 +306,24 @@ export default function CoinDetail({ coinId }: CoinDetailProps) {
                 <div className="space-y-2">
                   <div className="flex justify-between items-center">
                     <span className="text-sm flex items-center gap-2">
-                      <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                      <div className="w-2 h-2 bg-orange-500 rounded-full"></div>
                       Market Cap:
                     </span>
                     <span className="text-sm font-medium">
-                      ₹{(coinData.quote.USD.market_cap * 83 / 1000000000).toFixed(2)}B
-                    </span>
-                  </div>
-                  <div className="flex justify-between items-center">
-                    <span className="text-sm flex items-center gap-2">
-                      <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
-                      24h Volume:
-                    </span>
-                    <span className="text-sm font-medium">
-                      ₹{(coinData.quote.USD.volume_24h * 83 / 1000000000).toFixed(2)}B
+                      ${coinData.quote.USD.market_cap >= 1e12 ? (coinData.quote.USD.market_cap / 1e12).toFixed(1) + 'T' : 
+                        coinData.quote.USD.market_cap >= 1e9 ? (coinData.quote.USD.market_cap / 1e9).toFixed(1) + 'B' : 
+                        (coinData.quote.USD.market_cap / 1e6).toFixed(1) + 'M'}
                     </span>
                   </div>
                   <div className="flex justify-between items-center">
                     <span className="text-sm flex items-center gap-2">
                       <div className="w-2 h-2 bg-cyan-500 rounded-full"></div>
-                      Currency:
+                      24h Volume:
                     </span>
-                    <span className="text-sm font-medium">INR</span>
+                    <span className="text-sm font-medium">
+                      ${coinData.quote.USD.volume_24h >= 1e9 ? (coinData.quote.USD.volume_24h / 1e9).toFixed(1) + 'B' : 
+                        (coinData.quote.USD.volume_24h / 1e6).toFixed(1) + 'M'}
+                    </span>
                   </div>
                 </div>
               </div>
