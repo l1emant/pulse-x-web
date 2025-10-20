@@ -1,0 +1,19 @@
+{
+  "inputs": [
+    {
+      "type": "promptString",
+      "id": "betterAuth_api_key",
+      "description": "API Key for Better Auth MCP Server",
+      "password": true
+    }
+  ],
+  "servers": {
+    "BetterAuth": {
+      "type": "http",
+      "url": "https://mcp.chonkie.ai/better-auth/better-auth-builder/mcp",  // replace with actual
+      "headers": {
+        "Authorization": "Bearer ${input:betterAuth_api_key}"
+      }
+    }
+  }
+}

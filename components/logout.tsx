@@ -10,26 +10,18 @@ export function Logout() {
     const router = useRouter();
     const handleLogout = async () => {
         try {
-            await authClient.signOut();
-            
-            // Clear all possible better-auth cookies
-            const cookiesToClear = [
-                'better-auth.session_token',
-                'better-auth.session',
-                'session',
-                'auth-token'
-            ];
-            
-            cookiesToClear.forEach(cookieName => {
-                document.cookie = `${cookieName}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
-                document.cookie = `${cookieName}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=${window.location.hostname};`;
+            await authClient.signOut({
+                fetchOptions: {
+                    onSuccess: () => {
+                        toast.success("Logged out successfully");
+                        window.location.href = "/";
+                    }
+                }
             });
-            
-            toast.success("Logged out successfully");
-            window.location.replace("/");
         } catch (error) {
             console.error("Logout failed:", error);
             toast.error("Logout failed. Please try again.");
+            window.location.href = "/";
         }
     };
 
