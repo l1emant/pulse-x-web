@@ -73,13 +73,21 @@ export function LoginForm({
   // 2. Define a submit handler.
   async function onSubmit(values: z.infer<typeof formSchema>) {
     setIsLoading(true);
-    const {success, message} = await signIn(values.email, values.password);
+    try {
+      const { data, error } = await authClient.signIn.email({
+        email: values.email,
+        password: values.password,
+        callbackURL: "/dashboard",
+      });
 
-    if (success){
-      toast.success(message as string);
-      router.push('/dashboard')
-    }else{
-      toast.error(message as string);
+      if (error) {
+        toast.error(error.message || "Sign in failed");
+      } else {
+        toast.success("Signed in successfully!");
+        router.push('/dashboard');
+      }
+    } catch (error) {
+      toast.error("Something went wrong");
     }
     
     setIsLoading(false);

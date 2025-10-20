@@ -18,5 +18,23 @@ export const auth = betterAuth({
         provider: "pg", // or "mysql", "sqlite"
         schema,
     }),
-    plugins: [nextCookies()]
+    plugins: [nextCookies()],
+    session: {
+        cookieCache: {
+            enabled: true,
+            maxAge: 5 * 60 // Cache duration in seconds
+        }
+    },
+    callbacks: {
+        async signIn({ user, account }) {
+            return true;
+        },
+        async redirect({ url, baseURL }) {
+            // Allows relative callback URLs
+            if (url.startsWith("/")) return `${baseURL}${url}`;
+            // Allows callback URLs on the same origin
+            else if (new URL(url).origin === baseURL) return url;
+            return `${baseURL}/dashboard`;
+        },
+    },
 });
