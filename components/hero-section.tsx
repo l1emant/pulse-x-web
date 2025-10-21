@@ -12,11 +12,11 @@ export default function HeroSection() {
             <HeroHeader />
             <main className="overflow-x-hidden">
                 <section>
-                    <div className="pb-24 pt-12 md:pb-32 lg:pb-56 lg:pt-44">
+                    <div className="pt-12 pb-16 lg:pt-44 lg:pb-24">
                         <div className="relative mx-auto flex max-w-6xl flex-col px-6 lg:grid lg:grid-cols-2 lg:gap-12">
                             <div className="mx-auto max-w-lg text-center lg:mx-0 lg:text-left">
-                                <h1 className="mt-8 max-w-2xl text-balance text-5xl font-medium md:text-6xl lg:mt-16 xl:text-7xl">Track Crypto Prices in Real Time</h1>
-                                <p className="mt-8 max-w-2xl text-pretty text-lg">Monitor live prices and stay updated with key market trends all in one clean dashboard</p>
+                                <h1 className="mt-8 max-w-2xl text-balance text-5xl font-semibold lg:text-6xl lg:mt-16 leading-tight lg:leading-tight">Track Crypto Prices in Real Time</h1>
+                                <p className="mt-8 max-w-2xl text-pretty text-lg pr-12 lg:pr-16">Monitor live prices and stay updated with key market trends all in one clean dashboard</p>
 
                                 <div className="mt-12 flex flex-col items-center justify-center gap-2 sm:flex-row lg:justify-start">
                                     <Button
@@ -40,6 +40,7 @@ export default function HeroSection() {
                                 </div>
                             </div>
                             <div className="order-first lg:order-last flex justify-center lg:items-start lg:pt-8 lg:h-[420px] lg:-mb-4 relative overflow-hidden">
+                                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-24 bg-blue-500/8 dark:bg-blue-400/12 blur-3xl rounded-full -z-10"></div>
                                 <Image
                                     className="h-[450px] w-auto object-contain object-top sm:h-[530px] lg:h-[580px] lg:overflow-visible"
                                     src="/phone_mockup.png"
@@ -51,12 +52,12 @@ export default function HeroSection() {
                         </div>
                     </div>
                 </section>
-                <section className="pb-16 md:pb-32">
-                    <div className="group relative m-auto max-w-6xl px-6">
+                <section className="pb-8 md:pb-16">
+                    <div className="group relative mx-auto max-w-6xl pl-6 pr-48">
                         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-24 bg-blue-500/8 dark:bg-blue-400/12 blur-3xl rounded-full -z-10 overflow-visible"></div>
                         <div className="flex flex-col items-center md:flex-row">
                             <div className="md:max-w-44 md:border-r md:pr-6">
-                                <p className="text-end text-sm">Track the market leaders</p>
+                                <p className="text-right text-sm">Track the market leaders</p>
                             </div>
                             <div className="relative py-6 md:w-[calc(100%-11rem)]">
                                 <InfiniteSlider

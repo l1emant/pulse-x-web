@@ -32,7 +32,7 @@ const Service1 = () => {
         <div className="container px-6">
           <div className="mx-auto max-w-lg">
             <p className="leading-7 text-lg text-justify">
-              PulseX began as a simple idea — to build a lightweight dashboard that displays real-time cryptocurrency data in a clear and intuitive way.
+              PulseX began as a simple idea to build a lightweight dashboard that displays real-time cryptocurrency data in a clear and intuitive way.
             </p>
 
             <p className="leading-7 [&:not(:first-child)]:mt-6 text-lg text-justify">
@@ -40,7 +40,7 @@ const Service1 = () => {
             </p>
 
             <p className="leading-7 [&:not(:first-child)]:mt-6 text-lg text-justify">
-              PulseX isn&apos;t designed for professional trading or financial decisions. Instead, it&apos;s a developer-driven project built to learn, experiment, and demonstrate how a real-time crypto dashboard can be built from the ground up.
+              PulseX isn&apos;t designed for professional trading or financial decisions. Instead, it&apos;s a student-driven project built to learn, experiment, and demonstrate how a real-time crypto dashboard can be built from the ground up.
             </p>
           </div>
         </div>
